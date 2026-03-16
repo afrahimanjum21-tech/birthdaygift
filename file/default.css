@@ -1,37 +1,38 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #000; /* অন্ধকার ব্যাকগ্রাউন্ড */
-  background-image: url('../img2.png');
-  background-size: cover;
-  background-attachment: fixed;
+  background-color: #050505;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
+  overflow-x: hidden;
 }
 
 /* গল্পের পাতার ডিজাইন */
 #story-page {
-  width: 80%;
-  max-width: 700px;
-  margin: 50px auto;
-  background: rgba(0, 0, 0, 0.7); /* হালকা স্বচ্ছ ব্যাকগ্রাউন্ড */
-  padding: 30px;
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  background: rgba(20, 20, 20, 0.85);
+  padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 0 20px rgba(255, 107, 129, 0.3);
+  box-shadow: 0 0 25px rgba(255, 107, 129, 0.4);
   text-align: left;
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
 #story-content {
-  max-height: 500px;
+  max-height: 70vh;
   overflow-y: auto;
-  padding-right: 15px;
-  font-size: 18px;
+  padding-right: 10px;
+  font-size: 16px;
 }
 
-/* Scrollbar styling */
+#story-content p {
+  margin-bottom: 15px;
+}
+
 #story-content::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 #story-content::-webkit-scrollbar-thumb {
   background: #ff6b81;
@@ -41,45 +42,64 @@ body {
 #start-btn {
   display: block;
   margin: 20px auto 0;
-  padding: 10px 25px;
+  padding: 12px 20px;
   background: #ff6b81;
   color: white;
   border: none;
   border-radius: 25px;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  transition: 0.3s;
+  width: 100%;
+  max-width: 300px;
 }
 
-#start-btn:hover {
-  background: #ff4757;
-  transform: scale(1.05);
-}
-
-/* অন্যান্য স্টাইল */
+/* ট্রি এনিমেশন র‍্যাপার */
 #wrap {
   position: relative;
   margin: 0 auto;
   width: 1100px;
   height: 680px;
+  /* মোবাইলে যাতে স্ক্রিনের বাইরে না যায় */
 }
+
 #text {
-  width: 400px; /* একটু বাড়িয়ে দিলাম যাতে টেক্সট ধরে */
+  width: 400px;
   height: 560px;
-  left: 100px;
-  top: 80px;
+  left: 50px;
+  top: 50px;
   position: absolute;
+  z-index: 10;
 }
+
 #code {
   display: none;
   color: #ffdae0;
-  line-height: 30px;
+  line-height: 1.5;
   font-size: 20px;
   font-weight: bold;
+  text-shadow: 1px 1px 2px #000;
 }
+
 #canvas {
+  display: block;
   margin: 0 auto;
 }
+
+/* মোবাইলের জন্য মিডিয়া কুয়েরি */
+@media screen and (max-width: 600px) {
+  #story-page {
+      padding: 15px;
+      margin: 10px auto;
+  }
+  #story-content {
+      font-size: 15px;
+  }
+  #code {
+      font-size: 16px;
+      left: 20px;
+  }
+}
+
 .hand {
   cursor: pointer;
 }
