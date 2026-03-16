@@ -1,103 +1,86 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    background-image: url('../img2.png'); /* আপনার ব্যাকগ্রাউন্ড ইমেজের পাথ ঠিক রাখুন */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
-    overflow-x: hidden; /* স্ক্রিন ডানে-বামে নড়বে না */
+  margin: 0;
+  padding: 0;
+  background-image: url('../img2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 14px;
+  font-family: sans-serif;
+  color: white;
+  overflow: auto;
 }
-
-/* গল্পের পাতার ডিজাইন */
-#story-page {
-    width: 90%;
-    max-width: 600px;
-    margin: 20px auto;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 107, 129, 0.4);
-    text-align: left;
-    line-height: 1.6;
+a {
+  color: white;
+  font-size: 14px;
 }
-
-#story-content {
-    max-height: 60vh;
-    overflow-y: auto;
-    font-size: 16px;
-    padding-right: 10px;
+#main {
+  width: 100%;
 }
-
-#start-btn {
-    display: block;
-    margin: 20px auto 0;
-    padding: 12px 20px;
-    background: #ff6b81;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* সারপ্রাইজ সেকশন (গাছ এবং নোট) */
 #wrap {
-    position: relative;
-    margin: 0 auto;
-    width: 1100px;
-    height: 680px;
+  position: relative;
+  margin: 0 auto;
+  width: 1100px;
+  height: 680px;
+  margin-top: 10px;
 }
-
 #text {
-    width: 400px;
-    height: auto;
-    left: 80px;
-    top: 50px;
-    position: absolute;
-    z-index: 10;
+  width: 272px;
+  height: 560px;
+  left: 188px;
+  top: 80px;
+  position: absolute;
 }
-
 #code {
-    display: none;
-    color: #ffdae0;
-    line-height: 1.5;
-    font-size: 20px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  display: none;
+  color: rgb(196, 255, 255);
+  font-size: 16px;
+  margin-top: 70px;
+  line-height: 25px;
+  font-size: larger;
+  font-weight: bolder;
 }
-
-/* মোবাইল ডিভাইসের জন্য রেসপন্সিভ কোড */
-@media only screen and (max-width: 600px) {
-    #wrap {
-        width: 100vw;
-        height: 100vh;
-        transform: scale(0.45); /* গাছটিকে স্ক্রিনে আটানোর জন্য ছোট করা হয়েছে */
-        transform-origin: top center;
-        margin-top: 100px;
-    }
-
-    #text {
-        left: 50%;
-        transform: translateX(-50%); /* টেক্সট মাঝখানে রাখার জন্য */
-        top: -150px; /* গাছ ছোট হওয়ায় টেক্সটকে উপরে তুলে দেওয়া হয়েছে */
-        width: 80vw;
-        text-align: center;
-    }
-
-    #code {
-        font-size: 35px !important; /* স্কেল ছোট হওয়ায় ফন্ট সাইজ বাড়ানো হয়েছে */
-        line-height: 1.2;
-    }
+#clock-box {
+  position: absolute;
+  left: 60px;
+  top: 550px;
+  font-size: 28px;
+  display: none;
 }
-
+#clock-box a {
+  font-size: 28px;
+  text-decoration: none;
+}
+#clock {
+  margin-left: 48px;
+}
+#clock .digit {
+  font-size: 64px;
+}
 #canvas {
-    display: block;
-    margin: 0 auto;
+  margin: 0 auto;
+  width: 1100px;
+  height: 680px;
+}
+#error {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 60px;
+  display: none;
+}
+.hand {
+  cursor: pointer;
+}
+.say {
+  margin-left: 5px;
+}
+.space {
+  margin-right: 150px;
 }
 
-.hand {
-    cursor: pointer;
+#message-box{
+  position: absolute;
+  margin-top:450px;
+  font-size: 25px;
+  font-family: monospace;
+
 }
