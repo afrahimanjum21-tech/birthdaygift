@@ -1,7 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HBD love</title>	    
     <link type="text/css" rel="stylesheet" href="./file/default.css">
     <script type="text/javascript" src="./file/jquery.min.js"></script>
@@ -15,13 +16,12 @@
     <script type="text/javascript" src="./file/love.js" charset="utf-8"></script>
 </head>
 <body>
-    <audio autoplay="autoplay" height="100" width="100" id="myAudio">
+    <audio id="myAudio" loop>
         <source src="aud.mp3" type="audio/mp3" />
-        <embed height="100" width="100" src="aud.mp3" />
     </audio>
 
     <div id="main">
-        <!-- নতুন গল্পের পাতা -->
+        <!-- গল্পের পাতা -->
         <div id="story-page">
             <div id="story-content">
                 <p>Hiii!!🙂</p>
@@ -35,8 +35,7 @@
                 <p>খুব সাধারণ একটা দিন। বিশেষ কোনো কিছুই নেই আজকের দিনে। অন্যান্য সব দিনের মতই সাধারণ একটা দিন। অন্যান্য দিনের মত সাধারণ ভাবেই রাত কেটে সূর্য উঠেছে। পাখিরা গান গেয়েছে, সূরেরও পরিবর্তন হয়নি কোনোরকম, সেই একই ভাব, একই সূর, একই রকম কিচিরমিচির।</p>
                 <p>কেও মোবাইল ফোন এর এলার্মে, কেও ঘড়ির এলার্মে কিংবা এখনো হয়তো কেও কেও মরগের ডাকে অন্যান্য দিনের মত একই ভাবে ঘুম থেকে উঠেছে। বিশ্বাস কর, কারো মধ্যে কোনোরকম পরিবর্তন আসেনি। কোনো মানুষের জন্যই দিনটা বিশেষ কিছু নয়।</p>
                 <p>কিন্তু তার পরও, কেও কেও দিনটাকে উদ্যাপন করছে।</p>
-                <p>কারা?</p>
-                <p>-প্রকৃতিরা।</p>
+                <p>কারা? -প্রকৃতিরা।</p>
                 <p>পরিবেশ, বাতাস, মাটি এরা সবাই মিলে মহানন্দে আনন্দ-উৎসব করছে আজকে।</p>
                 <p>কারণ কি জানো?</p>
                 <p>কারণ, আজ থেকে কিছু বছর আগে, ২০০৯ এ, পৃথিবীর বুকে একটা নতুন ধরনের ফুল ফুটেছিল। জান্নাতি ফুল। যার সুঘ্রাণ এ ওইদিন বাতাস মুখরিত হয়েছিল, যার পাপড়ির দোলনের শব্দ মাতিয়ে তুলেছিল পরিবেশ, যার সুন্দর্যে মাতাল হয়েছিল প্রকৃতি।</p>
@@ -57,9 +56,10 @@
                 <br>
                 <p style="font-size: 0.8em; font-style: italic; color: #ccc;">(প্রথমে ভেবেছিলাম পুরোটা voice note এর মাধমে বলবো।🙂 কিন্তু আমার আবৃতির যেই অবস্থা🤧 পড়ে emotion আসা তো দূর, হয়তো হেসে দিতা🥲 তাই লিখে দিলাম🙂)</p>
             </div>
-            <button id="start-btn">গল্পটি পড়া শেষ (Click to See Surprise)</button>
+            <button id="start-btn" style="display:none;">গল্পটি পড়া শেষ (Click to See Surprise)</button>
         </div>
 
+        <!-- সারপ্রাইজ ট্রি পেজ -->
         <div id="wrap" style="display:none;">
             <div id="text">
                 <div id="code">
@@ -84,6 +84,27 @@
         var canvas = $('#canvas');
         var audio = document.getElementById("myAudio");
 
+        // টাইপিং এনিমেশন শুরু (গল্পের পাতায়)
+        $(document).ready(function() {
+            var $storyLines = $("#story-content p, #story-content h2, #story-content br");
+            var currentLine = 0;
+
+            function typeNextLine() {
+                if (currentLine < $storyLines.length) {
+                    var $line = $($storyLines[currentLine]);
+                    $line.fadeIn(1000);
+                    currentLine++;
+                    setTimeout(typeNextLine, 800); // প্রতি লাইন আসার গ্যাপ
+                } else {
+                    $("#start-btn").fadeIn(1000); // সব পড়া শেষ হলে বাটন আসবে
+                }
+            }
+            
+            // সব লাইন শুরুতে হাইড করে রাখা
+            $storyLines.hide();
+            typeNextLine();
+        });
+
         // বাটন ক্লিক ফাংশন
         $("#start-btn").click(function(){
             $("#story-page").fadeOut(1000, function(){
@@ -93,6 +114,22 @@
             });
         });
 
+        // ক্যানভাস স্কেলিং ফাংশন (মোবাইলের জন্য)
+        function scaleCanvas() {
+            var winWidth = $(window).width();
+            if (winWidth < 1100) {
+                var scale = winWidth / 1150;
+                $('#wrap').css({
+                    'transform': 'scale(' + scale + ')',
+                    'transform-origin': 'top center'
+                });
+            } else {
+                $('#wrap').css('transform', 'none');
+            }
+        }
+        $(window).resize(scaleCanvas);
+        scaleCanvas();
+
         if (!canvas[0].getContext) {
             $("#error").show();
             return false;
@@ -100,9 +137,6 @@
 
         var width = canvas.width();
         var height = canvas.height();        
-        canvas.attr("width", width);
-        canvas.attr("height", height);
-
         var opts = {
             seed: { x: width / 2 - 20, color: "rgb(190, 26, 37)", scale: 2 },
             branch: [ [535, 680, 570, 250, 500, 200, 30, 100, [ [540, 500, 455, 417, 340, 400, 13, 100, [ [450, 435, 434, 430, 394, 395, 2, 40] ] ], [550, 445, 600, 356, 680, 345, 12, 100, [ [578, 400, 648, 409, 661, 426, 3, 80] ] ], [539, 281, 537, 248, 534, 217, 3, 40], [546, 397, 413, 247, 328, 244, 9, 80, [ [427, 286, 383, 253, 371, 205, 2, 40], [498, 345, 435, 315, 395, 330, 4, 60] ] ], [546, 357, 608, 252, 678, 221, 6, 100, [ [590, 293, 646, 277, 648, 271, 2, 80] ] ] ] ] ],
@@ -117,19 +151,19 @@
 
         canvas.click(function(e) {
             var offset = canvas.offset(), x, y;
-            x = e.pageX - offset.left;
-            y = e.pageY - offset.top;
+            // টাচ সাপোর্ট এর জন্য কোর্ডিনেট ঠিক করা
+            var scale = 1;
+            if($(window).width() < 1100) scale = $(window).width() / 1150;
+            
+            x = (e.pageX - offset.left) / scale;
+            y = (e.pageY - offset.top) / scale;
+            
             if (seed.hover(x, y)) {
                 hold = 0; 
                 canvas.unbind("click");
                 canvas.unbind("mousemove");
                 canvas.removeClass('hand');
             }
-        }).mousemove(function(e) {
-            var offset = canvas.offset(), x, y;
-            x = e.pageX - offset.left;
-            y = e.pageY - offset.top;
-            canvas.toggleClass('hand', seed.hover(x, y));
         });
 
         var seedAnimate = eval(Jscex.compile("async", function () {
