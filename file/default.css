@@ -1,75 +1,83 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #000; /* অন্ধকার ব্যাকগ্রাউন্ড */
+  background-color: #050505;
   background-image: url('../img2.png');
   background-size: cover;
   background-attachment: fixed;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
+  font-family: 'SolaimanLipi', 'Segoe UI', Tahoma, sans-serif;
+  color: #fff;
 }
 
-/* গল্পের পাতার ডিজাইন */
-#story-page {
-  width: 80%;
-  max-width: 700px;
-  margin: 50px auto;
-  background: rgba(0, 0, 0, 0.7); /* হালকা স্বচ্ছ ব্যাকগ্রাউন্ড */
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(255, 107, 129, 0.3);
-  text-align: left;
-  line-height: 1.8;
+/* টাইপিং স্টোরি কন্টেইনার */
+#story-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto;
+  background: rgba(20, 20, 20, 0.85);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 107, 129, 0.3);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
 
-#story-content {
+#story-typewriter {
+  font-size: 19px;
+  line-height: 1.7;
+  color: #f0f0f0;
+  min-height: 200px;
   max-height: 500px;
   overflow-y: auto;
-  padding-right: 15px;
-  font-size: 18px;
 }
 
-/* Scrollbar styling */
-#story-content::-webkit-scrollbar {
-  width: 5px;
-}
-#story-content::-webkit-scrollbar-thumb {
-  background: #ff6b81;
-  border-radius: 10px;
+/* আধুনিক বাটন ডিজাইন */
+#btn-wrapper {
+  text-align: center;
+  margin-top: 30px;
+  display: none; /* টাইপিং শেষে JS দিয়ে দেখানো হবে */
 }
 
-#start-btn {
-  display: block;
-  margin: 20px auto 0;
-  padding: 10px 25px;
-  background: #ff6b81;
-  color: white;
+#modern-start-btn {
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
   border: none;
-  border-radius: 25px;
-  font-size: 18px;
+  color: white;
+  padding: 15px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50px;
   cursor: pointer;
-  transition: 0.3s;
+  box-shadow: 0 10px 20px rgba(255, 117, 140, 0.4);
+  transition: all 0.3s ease;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-#start-btn:hover {
-  background: #ff4757;
-  transform: scale(1.05);
+#modern-start-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(255, 117, 140, 0.6);
+  background: linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%);
 }
 
-/* অন্যান্য স্টাইল */
+#modern-start-btn:active {
+  transform: translateY(1px);
+}
+
+/* মেইন অ্যানিমেশন সেকশন */
 #wrap {
   position: relative;
   margin: 0 auto;
   width: 1100px;
   height: 680px;
 }
+
 #text {
-  width: 400px; /* একটু বাড়িয়ে দিলাম যাতে টেক্সট ধরে */
-  height: 560px;
+  width: 400px;
   left: 100px;
   top: 80px;
   position: absolute;
 }
+
 #code {
   display: none;
   color: #ffdae0;
@@ -77,9 +85,14 @@ body {
   font-size: 20px;
   font-weight: bold;
 }
+
 #canvas {
   margin: 0 auto;
 }
-.hand {
-  cursor: pointer;
-}
+
+.hand { cursor: pointer; }
+.say { margin-left: 5px; }
+
+/* Scrollbar Customization */
+#story-typewriter::-webkit-scrollbar { width: 6px; }
+#story-typewriter::-webkit-scrollbar-thumb { background: #ff758c; border-radius: 10px; }
