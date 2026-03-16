@@ -1,113 +1,85 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #050505;
+  background-color: #000; /* অন্ধকার ব্যাকগ্রাউন্ড */
   background-image: url('../img2.png');
   background-size: cover;
   background-attachment: fixed;
-  font-family: 'SolaimanLipi', 'Segoe UI', Tahoma, sans-serif;
-  color: #fff;
-  overflow-x: hidden;
-}
-
-/* টাইপিং স্টোরি কন্টেইনার - মোবাইলের জন্য রেসপনসিভ */
-#story-container {
-  width: 90%;
-  max-width: 700px;
-  height: 85vh; /* স্ক্রিন অনুযায়ী উচ্চতা */
-  margin: 20px auto;
-  background: rgba(10, 10, 10, 0.9);
-  padding: 20px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 107, 129, 0.3);
-  display: flex;
-  flex-direction: column;
-}
-
-#story-scroll-box {
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 10px;
-}
-
-#story-typewriter {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #f0f0f0;
-}
-
-/* বাটন wrapper - পজিশন ফিক্সড করা হয়েছে যাতে না কাঁপে */
-#btn-wrapper {
-  padding-top: 20px;
-  text-align: center;
-  visibility: hidden; /* শুরুতে অদৃশ্য, টাইপিং শেষে আসবে */
-}
-
-#modern-start-btn {
-  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-  border: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
-  padding: 12px 35px;
+}
+
+/* গল্পের পাতার ডিজাইন */
+#story-page {
+  width: 80%;
+  max-width: 700px;
+  margin: 50px auto;
+  background: rgba(0, 0, 0, 0.7); /* হালকা স্বচ্ছ ব্যাকগ্রাউন্ড */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 107, 129, 0.3);
+  text-align: left;
+  line-height: 1.8;
+}
+
+#story-content {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 15px;
   font-size: 18px;
-  font-weight: bold;
-  border-radius: 50px;
+}
+
+/* Scrollbar styling */
+#story-content::-webkit-scrollbar {
+  width: 5px;
+}
+#story-content::-webkit-scrollbar-thumb {
+  background: #ff6b81;
+  border-radius: 10px;
+}
+
+#start-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 25px;
+  background: #ff6b81;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
   cursor: pointer;
-  box-shadow: 0 8px 15px rgba(255, 117, 140, 0.4);
   transition: 0.3s;
-  text-transform: uppercase;
 }
 
-#modern-start-btn:hover {
+#start-btn:hover {
+  background: #ff4757;
   transform: scale(1.05);
-  box-shadow: 0 12px 25px rgba(255, 117, 140, 0.6);
 }
 
-/* মেইন অ্যানিমেশন সেকশন - রেসপনসিভ মেকানিজম */
+/* অন্যান্য স্টাইল */
 #wrap {
   position: relative;
   margin: 0 auto;
-  width: 100%;
-  max-width: 1100px;
-  height: auto;
-  min-height: 680px;
+  width: 1100px;
+  height: 680px;
 }
-
 #text {
-  width: 90%;
-  max-width: 400px;
-  left: 5%;
-  top: 50px;
+  width: 400px; /* একটু বাড়িয়ে দিলাম যাতে টেক্সট ধরে */
+  height: 560px;
+  left: 100px;
+  top: 80px;
   position: absolute;
-  z-index: 10;
 }
-
 #code {
   display: none;
   color: #ffdae0;
-  line-height: 28px;
-  font-size: 18px;
+  line-height: 30px;
+  font-size: 20px;
   font-weight: bold;
-  text-shadow: 1px 1px 2px #000;
 }
-
 #canvas {
-  display: block;
   margin: 0 auto;
-  max-width: 100%; /* মোবাইলে ক্যানভাস ছোট হবে */
-  height: auto;
 }
-
-/* মোবাইল মিডিয়া কোয়েরি */
-@media (max-width: 600px) {
-  #story-typewriter { font-size: 16px; }
-  #code { font-size: 16px; line-height: 24px; }
-  #text { top: 20px; }
-  #story-container { padding: 15px; margin: 10px auto; }
+.hand {
+  cursor: pointer;
 }
-
-.hand { cursor: pointer; }
-.say { margin-left: 5px; }
-
-/* Scrollbar Style */
-#story-scroll-box::-webkit-scrollbar { width: 4px; }
-#story-scroll-box::-webkit-scrollbar-thumb { background: #ff758c; border-radius: 10px; }
